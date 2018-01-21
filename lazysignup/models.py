@@ -78,13 +78,13 @@ class LazyUserManager(models.Manager):
 
 @six.python_2_unicode_compatible
 class LazyUser(models.Model):
-    user = models.OneToOneField(constants.LAZYSIGNUP_USER_MODEL)
+    user = models.OneToOneField(constants.LAZYSIGNUP_USER_MODEL, on_delete=models.CASCADE)
     created = models.DateTimeField(default=now, db_index=True)
     objects = LazyUserManager()
 
     @classmethod
     def get_user_class(cls):
-        return cls._meta.get_field('user').rel.to
+        return cls._meta.get_field('user').related_model
 
     def __str__(self):
         return '{0}:{1}'.format(self.user, self.created)
