@@ -4,7 +4,7 @@ from lazysignup.models import LazyUser
 
 class LazySignupBackend(ModelBackend):
 
-    def authenticate(self, request=None, username=None):
+    def authenticate(self, request, username=None, password=None, **kwargs):
         user_class = LazyUser.get_user_class()
         try:
             return user_class.objects.get(username=username)
