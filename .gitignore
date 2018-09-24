@@ -8,6 +8,8 @@ docs/_build
 
 *~
 
+.mypy_cache
+
 # Vim
 *.swp
 
